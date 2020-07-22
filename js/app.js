@@ -13,14 +13,32 @@
  *
 */
 
+let navList = document.querySelector("#navbar__list");
+let navListHtml = `
+<li><a class="menu__link" href="#section1">Section 1</a></li>
+<li><a class="menu__link" href="#section2">Section 2</a></li>
+<li><a class="menu__link" href="#section3">Section 3</a></li>
+<li><a class="menu__link" href="#section4">Section 4</a></li>
+
+`
+
+var createNavBar = () =>{
+  navList.innerHTML = navListHtml;
+}
+createNavBar();
 // variable holding all navigation bar links
 let navLinks = document.querySelectorAll('nav ul li a');
 let sections = document.querySelectorAll('section');
 
 
-//add event litener for scrolling over each section and add function to add active class or remove it
-var changeActive = (section, link) => {
+// document.addEventListener('DOMContentLoaded', function(){
+//     // your code goes here
+//     createNavBar();
+// }, false);
 
+// add event litener for scrolling over each section and add function to add active class or remove it
+var changeActive = (section, link) => {
+  let navLinks = document.querySelectorAll('nav ul li a');
   window.addEventListener('scroll', event => {
     let fromTop = window.scrollY;
     if (
@@ -33,9 +51,20 @@ var changeActive = (section, link) => {
     }
   });
 
+  link.addEventListener('click', event => {
+    console.log("Hi");
+    section.scrollIntoView();
+  });
+
 };
 
 // for loop to loop through the sections and links lists
 for (var i = 0; i < sections.length; i++) {
   changeActive(sections[i], navLinks[i]);
 }
+
+// for (var i = 0; i < sections.length; i++) {
+//   navLinks[i].addEventListener('click', event => {
+//     sections[i].hash.scrollIntoView();
+//   })
+// }
